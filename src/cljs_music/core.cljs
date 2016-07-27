@@ -1,6 +1,6 @@
 (ns cljs-music.core
   (:require
-        [cljs-bach.synthesis :as synthesis :refer
+   [cljs-bach.synthesis :as synthesis :refer
          [audio-context run-with
           destination current-time
 
@@ -37,23 +37,14 @@
           all bpm tempo where     ; Melody modifiers
           after wherever duration]]
 
-        [leipzig.temperament :as temperament]))
+        [leipzig.temperament :as temperament]
+        [cljs-music.live :refer [loop!]]))
 
-(defn play!
-  "Take a sequence of notes and play them in an audiocontext."
-  [audiocontext notes]
-  (doseq [{:keys [time duration instrument] :as note} notes]
-    (let [at (+ time (.-currentTime audiocontext))
-          synth-instance (-> note
-                             (update :pitch temperament/equal)
-                             (dissoc :time)
-                             instrument)
-          connected-instance (synthesis/connect synth-instance synthesis/destination)]
-      (connected-instance audiocontext at duration))))
+;; Instruments
 
 (defn ping [note]
   (connect->
-   (square (:pitch note))
+   (sawtooth (:pitch note))
    (adsr 0.01 0.1 1 1)
    (low-pass (* 5 (:pitch note)))
    (gain 0.1)))
@@ -72,6 +63,8 @@
    (adsr 0.5 0.5 0.5 16)
    (gain 0.1)))
 
+;; Note patterns
+
 (defn harmony [prev]
   (->> (phrase (cycle [1])
                (map #(-> triad (root %)) [0 4 5 3]))
@@ -87,6 +80,8 @@
                [0])
        (all :instrument bass-inst)))
 
+;; Live-coding setup
+
 (defn live-fn [prev]
   (->> (harmony prev)
        (with (melody prev))
@@ -94,17 +89,10 @@
        (tempo (bpm 80))
        (where :pitch (comp C major))))
 
-(defn loop!
-  ([context] (loop! context {}))
-  ([context prev]
-   (let [notes (live-fn prev)
-         delay (* 1000 (duration notes))]
-     (play! context notes)
-     (js/setTimeout #(loop! context notes) delay))))
-
 (defonce context (audio-context))
-(defonce main-loop
-  (loop! context))
+(defonce jam (loop! #'live-fn context))
+
+;; MIDI input handling
 
 (defn midi-note-on [e]
   (let [note (.-note e)
@@ -112,7 +100,6 @@
     (-> (ping {:pitch freq})
         (connect-> destination)
         (run-with context (current-time context) 1.0))))
-
 
 (.enable
  js/WebMidi
