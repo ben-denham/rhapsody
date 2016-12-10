@@ -1,7 +1,7 @@
 (ns cljs-music.core
   (:require
    [cljs-bach.synthesis :as synthesis :refer
-         [audio-context run-with
+         [run-with
           destination current-time
 
           connect-> add           ; Synth connectors
@@ -38,7 +38,7 @@
           after wherever duration]]
 
         [leipzig.temperament :as temperament]
-        [cljs-music.live :refer [loop!]]))
+        [cljs-music.live :refer [play! loop! set-midi-listener!]]))
 
 ;; Instruments
 
@@ -89,23 +89,15 @@
        (tempo (bpm 80))
        (where :pitch (comp C major))))
 
-(defonce context (audio-context))
-(defonce jam (loop! #'live-fn context))
+(defonce jam (loop! #'live-fn))
 
 ;; MIDI input handling
 
 (defn midi-note-on [e]
   (let [note (.-note e)
         freq (temperament/equal (.-number note))]
-    (-> (ping {:pitch freq})
-        (connect-> destination)
-        (run-with context (current-time context) 1.0))))
+    (play! (connect->
+            (ping {:pitch freq})
+            (gain 3)))))
 
-(.enable
- js/WebMidi
- (fn []
-   (let [inputs (.-inputs js/WebMidi)]
-     (doseq [input inputs]
-       (js/console.log input)
-       (.addListener input "noteon" "all"
-                     (fn [e] (midi-note-on e)))))))
+(set-midi-listener! #'midi-note-on)
