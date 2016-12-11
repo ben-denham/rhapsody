@@ -94,10 +94,11 @@
 ;; MIDI input handling
 
 (defn midi-note-on [e]
-  (let [note (.-note e)
-        freq (temperament/equal (.-number note))]
+  (let [note (:note e)
+        freq (temperament/equal (:number note))]
     (play! (connect->
             (ping {:pitch freq})
-            (gain 3)))))
+            (gain 3))
+           1)))
 
-(set-midi-listener! #'midi-note-on)
+(set-midi-listener! "noteon" #'midi-note-on)

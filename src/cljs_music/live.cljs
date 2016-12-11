@@ -8,14 +8,12 @@
 ;; Leipzig note playing
 
 (defonce audio-context (synth/audio-context))
-(def default-delay-secs 0.01)
+(def default-delay-secs 0.05)
 
 (defn now []
   (.-currentTime audio-context))
 
 (defn play!
-  ([sound-source]
-   (play! sound-source 1.0))
   ([sound-source duration]
    (play! sound-source duration (+ default-delay-secs (now))))
   ([sound-source duration at]
@@ -56,18 +54,22 @@
 ;; MIDI handling
 
 (def midi-initialised (atom false))
-(def midi-listener (atom nil))
+(def midi-listener (atom {}))
 
-(defn- midi-init! []
+(defn- midi-init! [type]
   (.enable
    js/WebMidi
    (fn []
      (let [inputs (.-inputs js/WebMidi)]
        (doseq [input inputs]
-         (.addListener input "noteon" "all" #(@midi-listener %)))))))
+         (.addListener input type "all"
+                       (fn [midi-event]
+                         (let [event-map (js->clj midi-event :keywordize-keys true)
+                               listener (get @midi-listener type)]
+                           (listener event-map)))))))))
 
-(defn set-midi-listener! [listener]
-  (when (not @midi-initialised)
-    (midi-init!)
-    (reset! midi-initialised true))
-  (reset! midi-listener listener))
+(defn set-midi-listener! [type listener]
+  (js/console.log (get @midi-listener type))
+  (when (not (get @midi-listener type))
+    (midi-init! type))
+  (swap! midi-listener assoc type listener))
