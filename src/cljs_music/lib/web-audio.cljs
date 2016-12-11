@@ -47,3 +47,9 @@
          loop-delay-ms (* 1000 loop-delay)]
      (play-notes! notes at)
      (js/setTimeout #(loop! live-fn notes next-at) loop-delay-ms))))
+
+(defn pause! []
+  (.suspend audio-context))
+
+(defn resume! []
+  (.resume audio-context))
