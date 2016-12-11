@@ -1,4 +1,4 @@
-(ns cljs-music.macros)
+(ns cljs-music.lib.macros)
 
 (defn namespace-old-vars [{:keys [vars ns]}]
   (map #(symbol (name ns) (name %)) vars))
