@@ -1,65 +1,67 @@
 (ns cljs-music.core
-  (:require [cljs-music.live :as l]))
+  (:require [cljs-music.live :refer-macros [import-live!]]))
+
+(defonce live (import-live!))
 
 ;; Instruments
 
 (defn ping [note]
-  (l/connect->
-   (l/sawtooth (:pitch note))
-   (l/adsr 0.01 0.1 1 1)
-   (l/low-pass (* 5 (:pitch note)))
-   (l/gain 0.1)))
+  (connect->
+   (sawtooth (:pitch note))
+   (adsr 0.01 0.1 1 1)
+   (low-pass (* 5 (:pitch note)))
+   (gain 0.1)))
 
 (defn bell [note]
-  (l/connect->
-   (l/sawtooth (:pitch note))
-   (l/adsr 0.01 0.1 1 0.5)
-   (l/low-pass (* 5 (:pitch note)))
-   (l/gain 0.3)))
+  (connect->
+   (sawtooth (:pitch note))
+   (adsr 0.01 0.1 1 0.5)
+   (low-pass (* 5 (:pitch note)))
+   (gain 0.3)))
 
 (defn bass-inst [note]
-  (l/connect->
-   (l/add (l/sine (:pitch note))
-        (l/sine (/ (:pitch note) 2)))
-   (l/adsr 0.5 0.5 0.5 16)
-   (l/gain 0.1)))
+  (connect->
+   (add (sine (:pitch note))
+        (sine (/ (:pitch note) 2)))
+   (adsr 0.5 0.5 0.5 16)
+   (gain 0.1)))
 
 ;; Note patterns
 
 (defn harmony [prev]
-  (->> (l/phrase (cycle [1])
-               (map #(-> l/triad (l/root %)) [0 4 5 3]))
-       (l/all :instrument ping)))
+  (->> (phrase (cycle [1])
+               (map #(-> triad (root %)) [0 4 5 3]))
+       (all :instrument ping)))
 
 (defn melody [prev]
-  (->> (l/phrase (cycle [0.5])
+  (->> (phrase (cycle [0.5])
                [0 2 4 0 5 7 3 5])
-       (l/all :instrument bell)))
+       (all :instrument bell)))
 
 (defn bass [prev]
-  (->> (l/phrase [1]
+  (->> (phrase [1]
                [0])
-       (l/all :instrument bass-inst)))
+       (all :instrument bass-inst)))
 
 ;; Live-coding setup
 
 (defn live-fn [prev]
   (->> (harmony prev)
-       (l/with (melody prev))
-       (l/with (bass prev))
-       (l/tempo (l/bpm 80))
-       (l/where :pitch (comp l/C l/major))))
+       (with (melody prev))
+       (with (bass prev))
+       (tempo (bpm 80))
+       (where :pitch (comp C major))))
 
-(defonce jam (l/loop! #'live-fn))
+(defonce jam (loop! #'live-fn))
 
 ;; MIDI input handling
 
 (defn midi-note-on [e]
   (let [note (:note e)
-        freq (l/temp-equal (:number note))]
-    (l/play! (l/connect->
+        freq (temp-equal (:number note))]
+    (play! (connect->
             (ping {:pitch freq})
-            (l/gain 3))
+            (gain 3))
            1)))
 
-(l/set-midi-listener! "noteon" #'midi-note-on)
+(set-midi-listener! "noteon" #'midi-note-on)
