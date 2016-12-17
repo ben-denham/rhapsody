@@ -18,10 +18,18 @@ if [ -d "$maven_dir" ]; then
     maven_dir_vol="-v $maven_dir:/home/code_executor/.m2"
 fi
 
+# Share host ~/.lein if it exists.
+lein_dir_vol=""
+lein_dir="$HOME/.lein"
+if [ -d "$lein_dir" ]; then
+    lein_dir_vol="-v $lein_dir:/home/code_executor/.lein"
+fi
+
 # Run docker container.
 docker run --rm -it\
        -p 1812:1812 \
        -p 8000:8000 \
        -v $(pwd):/app \
        $maven_dir_vol \
+       $lein_dir_vol \
        $DOCKER_IMAGE $command
