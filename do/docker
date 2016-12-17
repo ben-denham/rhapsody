@@ -1,0 +1,27 @@
+#!/bin/sh
+
+DOCKER_IMAGE="cljs-music"
+
+# Build the docker image.
+docker build -t $DOCKER_IMAGE --build-arg USER_ID=$(id -u) .
+
+# Execute command specified by arguments, or bash.
+command="bash"
+if [ "$#" -ne "0" ]; then
+    command=$@
+fi
+
+# Share host maven dependencies if a ~/.m2 directory exists.
+maven_dir_vol=""
+maven_dir="$HOME/.m2"
+if [ -d "$maven_dir" ]; then
+    maven_dir_vol="-v $maven_dir:/home/code_executor/.m2"
+fi
+
+# Run docker container.
+docker run --rm -it\
+       -p 1812:1812 \
+       -p 8000:8000 \
+       -v $(pwd):/app \
+       $maven_dir_vol \
+       $DOCKER_IMAGE $command
