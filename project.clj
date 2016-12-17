@@ -91,6 +91,7 @@
                    :repl-options {; for nREPL dev you really need to limit output
                                   :init (set! *print-length* 50)
                                   :nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]
-                                  :port 1812}}}
+                                  :port 1812
+                                  :host "0.0.0.0"}}}
 
 )
