@@ -34,16 +34,7 @@
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/cljs_music.js"
                            :output-dir "resources/public/js/compiled/out"
-                           :source-map-timestamp true}}
-               ;; This next build is an compressed minified build for
-               ;; production. You can build this with:
-               ;; lein cljsbuild once min
-               {:id "min"
-                :source-paths ["src"]
-                :compiler {:output-to "resources/public/js/compiled/cljs_music.js"
-                           :main cljs-music.core
-                           :optimizations :advanced
-                           :pretty-print false}}]}
+                           :source-map-timestamp true}}]}
 
   :figwheel {;; :http-server-root "public" ;; default and assumes "resources"
              :server-port 8000
