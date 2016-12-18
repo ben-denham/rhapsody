@@ -1,0 +1,27 @@
+#!/bin/sh
+
+git_remote=$(git remote get-url origin)
+
+# Copy the latest code to .deploy/
+rm -rf .deploy
+cp -R resources/public .deploy
+
+# Initialize a git repository in .deploy/ (setting up the origin
+# remote and gh-pages branch).
+cd .deploy
+git init
+git remote add origin $git_remote
+git fetch --depth 1
+git branch gh-pages origin/gh-pages
+
+# Checkout the gh-pages branch (without changing the state of the
+# working directory).
+git symbolic-ref HEAD refs/heads/gh-pages
+git reset
+
+# Add and commit all changes.
+git add --all
+git commit -m "Deployment at $(date)"
+
+# Push changes to GitHub.
+git push origin gh-pages
