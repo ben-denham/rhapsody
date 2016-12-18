@@ -1,4 +1,13 @@
-(ns cljs-music.lib.macros)
+(ns cljs-music.lib.macros
+  (:require [clojure.java.io :refer [file]]
+            [clojure.tools.namespace.find :refer [find-namespaces-in-dir cljs]]))
+
+(defmacro get-compositions-namespaces []
+  (let [dir (file "src/cljs_music/compositions")]
+    `(quote ~(find-namespaces-in-dir dir cljs))))
+
+(defmacro require-namespace-string [namespace]
+  `(require (quote ~(symbol namespace))))
 
 (defn namespace-old-vars [{:keys [vars ns]}]
   (map #(symbol (name ns) (name %)) vars))

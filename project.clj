@@ -6,9 +6,13 @@
   :min-lein-version "2.6.1"
 
   :dependencies [[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.8.51"]
+                 [org.clojure/clojurescript "1.9.293"]
+                 [org.clojure/tools.namespace "0.3.0-alpha3"]
                  [cljs-bach "0.2.0"]
-                 [leipzig "0.10.0"]]
+                 [leipzig "0.10.0"]
+                 [com.cemerick/url "0.1.1"]
+                 [crate "0.2.4"]
+                 [prismatic/dommy "1.1.0"]]
 
   :plugins [[lein-figwheel "0.5.4-7"]
             [lein-cljsbuild "1.1.3" :exclusions [[org.clojure/clojure]]]]
