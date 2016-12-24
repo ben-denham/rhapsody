@@ -14,6 +14,7 @@
                  [weasel "0.7.0"]                      ;; needed by bREPL
                  [org.clojure/tools.nrepl "0.2.12"]    ;; needed by bREPL
                  [clj-jgit "0.8.9"]
+                 [adzerk/boot-template "1.0.0"]
 
                  ; App deps
                  [org.clojure/tools.namespace "0.3.0-alpha3"]
@@ -26,10 +27,12 @@
 (require '[adzerk.boot-cljs :refer [cljs]]
          '[pandeiro.boot-http :refer [serve]]
          '[adzerk.boot-reload :refer [reload]]
-         '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]])
+         '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
+         '[adzerk.boot-template :as boot-template])
 
 (def dev-output-dir "dev-www")
 (def release-output-dir "release-www")
+(def template-dir "template")
 
 (deftask dev
   "Launch Immediate Feedback Development Environment"
@@ -53,3 +56,24 @@
   (comp
    (cljs)
    (target :dir #{release-output-dir})))
+
+(deftask new-composition
+  "Create a new composition from the template."
+  [n name VAL sym "Namespace for the new composition"]
+  (if-not name
+    (do (boot.util/fail "The -n/--name option is required!\n")
+        (*usage*))
+    (do
+      (set-env!
+       :source-paths #{}
+       :resource-paths #{template-dir})
+      (let [name-str (str name)
+            dir-name (str "compositions/" name-str)]
+        (comp
+         (boot-template/template :paths #{"composition.cljs"
+                                          "composition.cljs.edn"}
+                                 :subs {"name" name-str})
+         (target :dir #{dir-name})
+         (with-pre-wrap fileset
+           (println (str "New composition created in: " dir-name))
+           fileset))))))
