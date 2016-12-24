@@ -1,0 +1,6 @@
+#!/bin/sh
+
+BASEDIR=$(dirname "$0")
+
+$BASEDIR/docker boot release
+$BASEDIR/gh-pages-deploy
