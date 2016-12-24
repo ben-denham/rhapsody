@@ -4,3 +4,4 @@
 /.m2/
 .repl
 .nrepl-port
+.nrepl-history
