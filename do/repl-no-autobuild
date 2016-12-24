@@ -1,3 +1,0 @@
-#!/bin/sh
-
-(echo "(fig-start! :autobuild false)"; cat <&0) | lein repl

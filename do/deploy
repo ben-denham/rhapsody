@@ -2,13 +2,12 @@
 
 git_remote=$(git remote get-url origin)
 
-# Copy the latest code to .deploy/
-rm -rf .deploy
-cp -R resources/public .deploy
+# Ensure there is no existing git repository in target/
+rm -rf target/.git
 
-# Initialize a git repository in .deploy/ (setting up the origin
-# remote and gh-pages branch).
-cd .deploy
+# Initialize a git repository in target/ (setting up the origin remote
+# and gh-pages branch).
+cd target
 git init
 git remote add origin $git_remote
 git fetch --depth 1
@@ -25,3 +24,6 @@ git commit -m "Deployment at $(date)"
 
 # Push changes to GitHub.
 git push origin gh-pages
+
+# Clean up git repository in target/
+rm -rf .git
