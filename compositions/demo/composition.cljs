@@ -1,4 +1,4 @@
-(ns cljs-music.compositions.demo
+(ns demo.composition
   (:require [cljs-music.live :refer-macros [import-live!]]))
 
 (defonce live (import-live!))

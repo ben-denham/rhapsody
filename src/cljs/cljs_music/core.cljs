@@ -7,10 +7,16 @@
                                                   require-namespace-string]]
                    [dommy.core :refer [sel1]]))
 
+(defn namespace->parts [namespace]
+  (s/split (str namespace) "."))
+
 (defn namespace->link [namespace]
-  (let [href (str "?ns=" namespace)
-        title (last (s/split (str namespace) "."))]
+  (let [title (first (namespace->parts namespace))
+        href (str title "/play.html")]
     [:a {:href href} title]))
+
+(defn composition-namespace? [namespace]
+  (= "composition" (last (namespace->parts namespace))))
 
 (defn render-menu []
   (replace-contents!
@@ -18,10 +24,7 @@
    (html [:ul
           (map (fn [namespace]
                  [:li (namespace->link namespace)])
-               (get-compositions-namespaces))])))
+               (filter composition-namespace?
+                       (get-compositions-namespaces)))])))
 
-(let [page-url (-> js/window .-location .-href url)]
-  (if-let [namespace (get-in page-url [:query "ns"])]
-    (let [goog-namespace (s/replace namespace "-" "_")]
-      (js/goog.require goog-namespace))
-    (render-menu)))
+(render-menu)

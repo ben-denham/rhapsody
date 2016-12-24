@@ -1,4 +1,5 @@
-(ns cljs-music.lib.midi)
+(ns cljs-music.lib.midi
+  (:require [webmidi.webmidi]))
 
 (def midi-listener (atom {}))
 

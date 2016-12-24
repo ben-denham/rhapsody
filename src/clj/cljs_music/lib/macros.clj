@@ -3,7 +3,7 @@
             [clojure.tools.namespace.find :refer [find-namespaces-in-dir cljs]]))
 
 (defmacro get-compositions-namespaces []
-  (let [dir (file "src/cljs_music/compositions")]
+  (let [dir (file "compositions")]
     `(quote ~(find-namespaces-in-dir dir cljs))))
 
 (defmacro require-namespace-string [namespace]
