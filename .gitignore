@@ -1,14 +1,5 @@
-/resources/public/js/compiled/**
-figwheel_server.log
-pom.xml
-*jar
-/lib/
-/classes/
 /out/
 /target/
-/.deploy
-.lein-deps-sum
-.lein-repl-history
-.lein-plugins/
+/.m2/
 .repl
 .nrepl-port
