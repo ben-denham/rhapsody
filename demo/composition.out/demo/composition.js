@@ -1,7 +1,7 @@
 // Compiled by ClojureScript 1.9.293 {}
 goog.provide('demo.composition');
 goog.require('cljs.core');
-goog.require('cljs_music.live');
+goog.require('rhapsody.live');
 if(typeof demo.composition.live !== 'undefined'){
 } else {
 demo.composition.live = (function (){
@@ -157,22 +157,22 @@ demo.composition.temp_werckmeister_ii = leipzig.temperament.werckmeister_ii;
 
 demo.composition.temp_werckmeister_iii = leipzig.temperament.werckmeister_iii;
 
-demo.composition.audio_context = cljs_music.lib.web_audio.audio_context;
+demo.composition.audio_context = rhapsody.lib.web_audio.audio_context;
 
-demo.composition.pause_BANG_ = cljs_music.lib.web_audio.pause_BANG_;
+demo.composition.pause_BANG_ = rhapsody.lib.web_audio.pause_BANG_;
 
-demo.composition.play_BANG_ = cljs_music.lib.web_audio.play_BANG_;
+demo.composition.play_BANG_ = rhapsody.lib.web_audio.play_BANG_;
 
-demo.composition.play_notes_BANG_ = cljs_music.lib.web_audio.play_notes_BANG_;
+demo.composition.play_notes_BANG_ = rhapsody.lib.web_audio.play_notes_BANG_;
 
-demo.composition.now = cljs_music.lib.web_audio.now;
+demo.composition.now = rhapsody.lib.web_audio.now;
 
-demo.composition.loop_BANG_ = cljs_music.lib.web_audio.loop_BANG_;
+demo.composition.loop_BANG_ = rhapsody.lib.web_audio.loop_BANG_;
 
-demo.composition.resume_BANG_ = cljs_music.lib.web_audio.resume_BANG_;
+demo.composition.resume_BANG_ = rhapsody.lib.web_audio.resume_BANG_;
 
 return (
-demo.composition.set_midi_listener_BANG_ = cljs_music.lib.midi.set_midi_listener_BANG_)
+demo.composition.set_midi_listener_BANG_ = rhapsody.lib.midi.set_midi_listener_BANG_)
 ;
 })()
 ;
@@ -187,8 +187,8 @@ demo.composition.bass_inst = (function demo$composition$bass_inst(note){
 return demo.composition.connect__GT_.call(null,demo.composition.add.call(null,demo.composition.sine.call(null,new cljs.core.Keyword(null,"pitch","pitch",1495126700).cljs$core$IFn$_invoke$arity$1(note)),demo.composition.sine.call(null,(new cljs.core.Keyword(null,"pitch","pitch",1495126700).cljs$core$IFn$_invoke$arity$1(note) / (2)))),demo.composition.adsr.call(null,0.5,0.5,0.5,(16)),demo.composition.gain.call(null,0.1));
 });
 demo.composition.harmony = (function demo$composition$harmony(prev){
-return demo.composition.all.call(null,new cljs.core.Keyword(null,"instrument","instrument",-960698844),demo.composition.ping,demo.composition.phrase.call(null,cljs.core.cycle.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(1)], null)),cljs.core.map.call(null,(function (p1__11244_SHARP_){
-return demo.composition.root.call(null,demo.composition.triad,p1__11244_SHARP_);
+return demo.composition.all.call(null,new cljs.core.Keyword(null,"instrument","instrument",-960698844),demo.composition.ping,demo.composition.phrase.call(null,cljs.core.cycle.call(null,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [(1)], null)),cljs.core.map.call(null,(function (p1__8508_SHARP_){
+return demo.composition.root.call(null,demo.composition.triad,p1__8508_SHARP_);
 }),new cljs.core.PersistentVector(null, 4, 5, cljs.core.PersistentVector.EMPTY_NODE, [(0),(4),(5),(3)], null))));
 });
 demo.composition.melody = (function demo$composition$melody(prev){
@@ -202,13 +202,13 @@ return demo.composition.where.call(null,new cljs.core.Keyword(null,"pitch","pitc
 });
 if(typeof demo.composition.jam !== 'undefined'){
 } else {
-demo.composition.jam = demo.composition.loop_BANG_.call(null,new cljs.core.Var(function(){return demo.composition.live_fn;},new cljs.core.Symbol("demo.composition","live-fn","demo.composition/live-fn",-748576144,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"demo.composition","demo.composition",-1734442115,null),new cljs.core.Symbol(null,"live-fn","live-fn",1838457875,null),"/home/code_executor/.boot/cache/tmp/app/1/r3nb31/demo/composition.cljs",14,1,48,48,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"prev","prev",43462301,null)], null)),null,(cljs.core.truth_(demo.composition.live_fn)?demo.composition.live_fn.cljs$lang$test:null)])));
+demo.composition.jam = demo.composition.loop_BANG_.call(null,new cljs.core.Var(function(){return demo.composition.live_fn;},new cljs.core.Symbol("demo.composition","live-fn","demo.composition/live-fn",-748576144,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"demo.composition","demo.composition",-1734442115,null),new cljs.core.Symbol(null,"live-fn","live-fn",1838457875,null),"/home/ben/.boot/cache/tmp/home/ben/src/rhapsody/jzm/-leqirm/demo/composition.cljs",14,1,48,48,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"prev","prev",43462301,null)], null)),null,(cljs.core.truth_(demo.composition.live_fn)?demo.composition.live_fn.cljs$lang$test:null)])));
 }
 demo.composition.midi_note_on = (function demo$composition$midi_note_on(e){
 var note = new cljs.core.Keyword(null,"note","note",1426297904).cljs$core$IFn$_invoke$arity$1(e);
 var freq = demo.composition.temp_equal.call(null,new cljs.core.Keyword(null,"number","number",1570378438).cljs$core$IFn$_invoke$arity$1(note));
 return demo.composition.play_BANG_.call(null,demo.composition.connect__GT_.call(null,demo.composition.ping.call(null,new cljs.core.PersistentArrayMap(null, 1, [new cljs.core.Keyword(null,"pitch","pitch",1495126700),freq], null)),demo.composition.gain.call(null,(3))),(1));
 });
-demo.composition.set_midi_listener_BANG_.call(null,"noteon",new cljs.core.Var(function(){return demo.composition.midi_note_on;},new cljs.core.Symbol("demo.composition","midi-note-on","demo.composition/midi-note-on",1973030401,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"demo.composition","demo.composition",-1734442115,null),new cljs.core.Symbol(null,"midi-note-on","midi-note-on",-1622733728,null),"/home/code_executor/.boot/cache/tmp/app/1/r3nb31/demo/composition.cljs",19,1,59,59,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"e","e",-1273166571,null)], null)),null,(cljs.core.truth_(demo.composition.midi_note_on)?demo.composition.midi_note_on.cljs$lang$test:null)])));
+demo.composition.set_midi_listener_BANG_.call(null,"noteon",new cljs.core.Var(function(){return demo.composition.midi_note_on;},new cljs.core.Symbol("demo.composition","midi-note-on","demo.composition/midi-note-on",1973030401,null),cljs.core.PersistentHashMap.fromArrays([new cljs.core.Keyword(null,"ns","ns",441598760),new cljs.core.Keyword(null,"name","name",1843675177),new cljs.core.Keyword(null,"file","file",-1269645878),new cljs.core.Keyword(null,"end-column","end-column",1425389514),new cljs.core.Keyword(null,"column","column",2078222095),new cljs.core.Keyword(null,"line","line",212345235),new cljs.core.Keyword(null,"end-line","end-line",1837326455),new cljs.core.Keyword(null,"arglists","arglists",1661989754),new cljs.core.Keyword(null,"doc","doc",1913296891),new cljs.core.Keyword(null,"test","test",577538877)],[new cljs.core.Symbol(null,"demo.composition","demo.composition",-1734442115,null),new cljs.core.Symbol(null,"midi-note-on","midi-note-on",-1622733728,null),"/home/ben/.boot/cache/tmp/home/ben/src/rhapsody/jzm/-leqirm/demo/composition.cljs",19,1,59,59,cljs.core.list(new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [new cljs.core.Symbol(null,"e","e",-1273166571,null)], null)),null,(cljs.core.truth_(demo.composition.midi_note_on)?demo.composition.midi_note_on.cljs$lang$test:null)])));
 
 //# sourceMappingURL=composition.js.map

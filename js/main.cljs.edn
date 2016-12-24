@@ -1,1 +1,2 @@
-{:require [cljs-music.core adzerk.boot-reload.init651 adzerk.boot-cljs-repl], :compiler-options {:asset-path "js/main.out"}}
+{:require [rhapsody.core]
+ :compiler-options {:asset-path "js/main.out"}}

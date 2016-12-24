@@ -5,13 +5,13 @@ goog.require('cljs.core');
  * Dissociate this keyseq from m, removing any empty maps created as a result
  * (including at the top-level).
  */
-dommy.utils.dissoc_in = (function dommy$utils$dissoc_in(m,p__11070){
-var vec__11074 = p__11070;
-var seq__11075 = cljs.core.seq.call(null,vec__11074);
-var first__11076 = cljs.core.first.call(null,seq__11075);
-var seq__11075__$1 = cljs.core.next.call(null,seq__11075);
-var k = first__11076;
-var ks = seq__11075__$1;
+dommy.utils.dissoc_in = (function dommy$utils$dissoc_in(m,p__8793){
+var vec__8797 = p__8793;
+var seq__8798 = cljs.core.seq.call(null,vec__8797);
+var first__8799 = cljs.core.first.call(null,seq__8798);
+var seq__8798__$1 = cljs.core.next.call(null,seq__8798);
+var k = first__8799;
+var ks = seq__8798__$1;
 if(cljs.core.truth_(m)){
 var temp__4655__auto__ = (function (){var and__6926__auto__ = ks;
 if(and__6926__auto__){
@@ -44,11 +44,11 @@ return Array.prototype.slice.call(array_like);
  */
 dommy.utils.as_str = (function dommy$utils$as_str(s){
 if((s instanceof cljs.core.Keyword)){
-return [cljs.core.str((function (){var G__11078 = cljs.core.namespace.call(null,s);
-if((G__11078 == null)){
+return [cljs.core.str((function (){var G__8801 = cljs.core.namespace.call(null,s);
+if((G__8801 == null)){
 return null;
 } else {
-return [cljs.core.str(G__11078),cljs.core.str("/")].join('');
+return [cljs.core.str(G__8801),cljs.core.str("/")].join('');
 }
 })()),cljs.core.str(cljs.core.name.call(null,s))].join('');
 } else {
@@ -85,8 +85,8 @@ if((i >= (0))){
 if(dommy.utils.class_match_QMARK_.call(null,class_name,class$,i)){
 return i;
 } else {
-var G__11079 = (i + class$.length);
-start_from = G__11079;
+var G__8802 = (i + class$.length);
+start_from = G__8802;
 continue;
 }
 } else {
@@ -102,10 +102,10 @@ var class_len = class_name.length;
 var temp__4655__auto__ = dommy.utils.class_index.call(null,class_name,class$);
 if(cljs.core.truth_(temp__4655__auto__)){
 var i = temp__4655__auto__;
-var G__11080 = (function (){var end = (i + class$.length);
+var G__8803 = (function (){var end = (i + class$.length);
 return [cljs.core.str((((end < class_len))?[cljs.core.str(class_name.substring((0),i)),cljs.core.str(class_name.substr((end + (1))))].join(''):class_name.substring((0),(i - (1)))))].join('');
 })();
-class_name = G__11080;
+class_name = G__8803;
 continue;
 } else {
 return class_name;

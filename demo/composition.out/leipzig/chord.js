@@ -3,13 +3,13 @@ goog.provide('leipzig.chord');
 goog.require('cljs.core');
 goog.require('clojure.set');
 goog.require('leipzig.scale');
-leipzig.chord.update_all = (function leipzig$chord$update_all(m,p__10985,f){
-var vec__10989 = p__10985;
-var seq__10990 = cljs.core.seq.call(null,vec__10989);
-var first__10991 = cljs.core.first.call(null,seq__10990);
-var seq__10990__$1 = cljs.core.next.call(null,seq__10990);
-var k = first__10991;
-var ks = seq__10990__$1;
+leipzig.chord.update_all = (function leipzig$chord$update_all(m,p__8442,f){
+var vec__8446 = p__8442;
+var seq__8447 = cljs.core.seq.call(null,vec__8446);
+var first__8448 = cljs.core.first.call(null,seq__8447);
+var seq__8447__$1 = cljs.core.next.call(null,seq__8447);
+var k = first__8448;
+var ks = seq__8447__$1;
 if(cljs.core.truth_(k)){
 return leipzig.chord.update_all.call(null,cljs.core.update_in.call(null,m,new cljs.core.PersistentVector(null, 1, 5, cljs.core.PersistentVector.EMPTY_NODE, [k], null),f),ks,f);
 } else {

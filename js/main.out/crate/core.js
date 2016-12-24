@@ -10,14 +10,14 @@ return goog.dom.htmlToDocumentFragment(html_str);
 });
 crate.core.html = (function crate$core$html(var_args){
 var args__8053__auto__ = [];
-var len__8046__auto___10965 = arguments.length;
-var i__8047__auto___10966 = (0);
+var len__8046__auto___8688 = arguments.length;
+var i__8047__auto___8689 = (0);
 while(true){
-if((i__8047__auto___10966 < len__8046__auto___10965)){
-args__8053__auto__.push((arguments[i__8047__auto___10966]));
+if((i__8047__auto___8689 < len__8046__auto___8688)){
+args__8053__auto__.push((arguments[i__8047__auto___8689]));
 
-var G__10967 = (i__8047__auto___10966 + (1));
-i__8047__auto___10966 = G__10967;
+var G__8690 = (i__8047__auto___8689 + (1));
+i__8047__auto___8689 = G__8690;
 continue;
 } else {
 }
@@ -39,8 +39,8 @@ return cljs.core.first.call(null,res);
 
 crate.core.html.cljs$lang$maxFixedArity = (0);
 
-crate.core.html.cljs$lang$applyTo = (function (seq10964){
-return crate.core.html.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null,seq10964));
+crate.core.html.cljs$lang$applyTo = (function (seq8687){
+return crate.core.html.cljs$core$IFn$_invoke$arity$variadic(cljs.core.seq.call(null,seq8687));
 });
 
 /**
