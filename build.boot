@@ -26,35 +26,7 @@
 (require '[adzerk.boot-cljs :refer [cljs]]
          '[pandeiro.boot-http :refer [serve]]
          '[adzerk.boot-reload :refer [reload]]
-         '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
-         '[clj-jgit.porcelain :refer [load-repo git-init git-fetch git-branch-create]]
-         '[clojure.java.io :as io])
-
-(defn safe-delete [file-path]
-  (if (.exists (io/file file-path))
-    (try
-      (io/delete-file file-path)
-      (catch Exception e (str "exception: " (.getMessage e))))
-    false))
-
-(defn delete-dir-contents
-  ([dir-path]
-   (delete-dir-contents dir-path true nil))
-  ([dir-path delete-dir? exclude-fn]
-   (let [dir (io/file dir-path)
-         dir-contents (file-seq dir)
-         to-delete (if exclude-fn
-                     (filter exclude-fn dir-contents)
-                     dir-contents)]
-     (doseq [file to-delete]
-       (cond
-         (.isFile file) (io/delete-file (.getPath file))
-         (.isDirectory file) (delete-dir-contents (.getPath file))))
-     (when (and delete-dir? (.exists dir))
-       (io/delete-file dir-path)))))
-
-(defn clear-git-repo [repo-path]
-  (delete-dir-contents repo-path false #(= ".git" (.getPath %))))
+         '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]])
 
 (def dev-output-dir "dev-www")
 (def release-output-dir "release-www")
@@ -81,36 +53,3 @@
   (comp
    (cljs)
    (target :dir #{release-output-dir})))
-
-(deftask deploy
-  "Build and deploy to gh-pages"
-  []
-  (comp
-   (release)
-   (with-pre-wrap fileset
-     (let [remote-url (-> (load-repo ".")
-                          (.getRepository)
-                          (.getConfig)
-                          (.getString "remote" "origin" "url"))]
-       ;; Initialize a git repository in the output dir (setting up
-       ;; the origin remote and gh-pages branch).
-       (dosh "git" "init" release-output-dir)
-       (binding [*sh-dir* release-output-dir]
-         (dosh "git" "remote" "add" "origin" remote-url)
-         (dosh "git" "fetch" "--depth" "1")
-         (dosh "git" "branch" "gh-pages" "origin/gh-pages")
-         ;; Checkout the gh-pages branch (without changing the state
-         ;; of the working directory).
-         (dosh "git" "symbolic-ref" "HEAD" "refs/heads/gh-pages")
-         (dosh "git" "reset" "-q")
-         ;; Add and commit all changes.
-         (dosh "git" "add" "--all")
-         (let [now (java.util.Date.)
-               date-format (java.text.SimpleDateFormat. "yyyy-MM-dd HH:mm:ss")
-               date-string (.format date-format now)]
-           (dosh "git" "commit" "-qm" (str "Deployment at " date-string)))
-         ;; Push changes to GitHub.
-         (dosh "git" "push" "origin" "gh-pages"))
-       ;; Clean up the output dir
-       (dosh "rm" "-rf" release-output-dir))
-     fileset)))
