@@ -1,2 +1,2 @@
-{:require [cljs-music.core]
+{:require [rhapsody.core]
  :compiler-options {:asset-path "js/main.out"}}

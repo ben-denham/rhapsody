@@ -1,4 +1,4 @@
-(ns cljs-music.lib.midi
+(ns rhapsody.lib.midi
   (:require [webmidi.webmidi]))
 
 (def midi-listener (atom {}))

@@ -1,4 +1,4 @@
-(ns cljs-music.lib.macros
+(ns rhapsody.lib.macros
   (:require [clojure.java.io :refer [file]]
             [clojure.tools.namespace.find :refer [find-namespaces-in-dir cljs]]))
 

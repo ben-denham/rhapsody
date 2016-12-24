@@ -1,8 +1,8 @@
-(ns cljs-music.live
-  (:require [cljs-music.lib.macros]))
+(ns rhapsody.live
+  (:require [rhapsody.lib.macros]))
 
 (defmacro import-live! []
-  '(cljs-music.lib.macros/import-namespace-vars
+  '(rhapsody.lib.macros/import-namespace-vars
     [{:ns cljs-bach.synthesis
       :vars [run-with destination
              current-time
@@ -45,9 +45,9 @@
              werckmeister-i
              werckmeister-ii
              werckmeister-iii]}
-     {:ns cljs-music.lib.web-audio
+     {:ns rhapsody.lib.web-audio
       :vars [audio-context pause!
              play! play-notes!
              now loop! resume!]}
-     {:ns cljs-music.lib.midi
+     {:ns rhapsody.lib.midi
       :vars [set-midi-listener!]}]))

@@ -1,5 +1,5 @@
 (ns demo.composition
-  (:require [cljs-music.live :refer-macros [import-live!]]))
+  (:require [rhapsody.live :refer-macros [import-live!]]))
 
 (defonce live (import-live!))
 

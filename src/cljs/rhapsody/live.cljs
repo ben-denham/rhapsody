@@ -1,11 +1,11 @@
-(ns cljs-music.live
+(ns rhapsody.live
   (:require [leipzig.temperament]
             [leipzig.melody]
             [leipzig.chord]
             [leipzig.scale]
             [cljs-bach.synthesis]
-            [cljs-music.lib.web-audio]
-            [cljs-music.lib.midi])
-  (:require-macros [cljs-music.live :refer [import-live!]]))
+            [rhapsody.lib.web-audio]
+            [rhapsody.lib.midi])
+  (:require-macros [rhapsody.live :refer [import-live!]]))
 
 (import-live!)

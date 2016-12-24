@@ -1,4 +1,4 @@
-# cljs-music
+# Rhapsody
 
 FIXME: Write a one-line description of your library/project.
 

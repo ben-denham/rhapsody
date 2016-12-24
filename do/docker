@@ -1,6 +1,6 @@
 #!/bin/sh
 
-DOCKER_IMAGE="cljs-music"
+DOCKER_IMAGE="rhapsody"
 
 # Build the docker image.
 docker build -t $DOCKER_IMAGE --build-arg USER_ID=$(id -u) .

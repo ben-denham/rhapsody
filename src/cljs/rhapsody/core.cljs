@@ -1,9 +1,9 @@
-(ns cljs-music.core
+(ns rhapsody.core
   (:require [clojure.string :as s]
             [cemerick.url :refer [url]]
             [dommy.core :refer [replace-contents!]]
             [crate.core :refer [html]])
-  (:require-macros [cljs-music.lib.macros :refer [get-compositions-namespaces
+  (:require-macros [rhapsody.lib.macros :refer [get-compositions-namespaces
                                                   require-namespace-string]]
                    [dommy.core :refer [sel1]]))
 

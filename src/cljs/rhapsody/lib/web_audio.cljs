@@ -1,4 +1,4 @@
-(ns cljs-music.lib.web-audio
+(ns rhapsody.lib.web-audio
   (:require [leipzig.temperament :as temperament]
             [leipzig.melody :as melody]
             [cljs-bach.synthesis :as synth]))
