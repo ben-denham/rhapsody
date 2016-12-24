@@ -1,6 +1,28 @@
 #!/bin/sh
 
-BASEDIR=$(dirname "$0")
+git_remote=$(git remote get-url origin)
+target_dir="release-www"
 
-boot release
-$BASEDIR/gh-pages-deploy
+# Ensure there is no existing git repository in $target_dir.
+rm -rf "$target_dir/.git"
+
+# Initialize a git repository in $target_dir (setting up the origin
+# remote and gh-pages branch).
+mkdir -p $target_dir
+cd $target_dir
+git init
+git remote add origin $git_remote
+git fetch --depth 1
+git branch gh-pages origin/gh-pages
+
+# Checkout the gh-pages branch (without changing the state of the
+# working directory).
+git symbolic-ref HEAD refs/heads/gh-pages
+git reset -q
+
+# Add and commit all changes.
+git add --all
+git commit -qm "Deployment at $(date)"
+
+# Push changes to GitHub.
+git push origin gh-pages
