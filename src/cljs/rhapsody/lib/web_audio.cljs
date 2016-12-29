@@ -33,7 +33,9 @@
          (update :pitch temperament/equal)
          (dissoc :time)
          instrument
-         (play! duration (+ time at))))))
+         (play! duration (+ time at))))
+   (when debug
+     (js/console.log "Scheduling finished: " (now)))))
 
 (defn loop!
   ([live-fn]
