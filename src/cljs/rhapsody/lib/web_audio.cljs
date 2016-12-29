@@ -39,7 +39,8 @@
 
 (defn loop!
   ([live-fn]
-   (loop! live-fn [] (+ default-delay-secs (now))))
+   (let [delay (melody/duration (live-fn []))]
+     (loop! live-fn [] (+ (now) delay))))
   ([live-fn prev-notes at]
    (let [notes (live-fn prev-notes)
          notes-dur (melody/duration notes)
