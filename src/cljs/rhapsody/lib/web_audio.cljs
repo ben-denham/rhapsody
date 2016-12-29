@@ -3,7 +3,7 @@
             [leipzig.melody :as melody]
             [cljs-bach.synthesis :as synth]))
 
-(def debug false)
+(def ^:dynamic *debug* false)
 (defonce audio-context (synth/audio-context))
 (def default-delay-secs 0.05)
 
@@ -21,7 +21,7 @@
   ([notes]
    (play! notes (+ default-delay-secs (now))))
   ([notes at]
-   (when debug
+   (when *debug*
      (do
        (js/console.log "--- play! ---")
        (js/console.log "Now: " (now))
@@ -34,7 +34,7 @@
          (dissoc :time)
          instrument
          (play! duration (+ time at))))
-   (when debug
+   (when *debug*
      (js/console.log "Scheduling finished: " (now)))))
 
 (defn loop!
