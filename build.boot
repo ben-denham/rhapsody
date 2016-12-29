@@ -27,7 +27,7 @@
 (require '[adzerk.boot-cljs :refer [cljs]]
          '[pandeiro.boot-http :refer [serve]]
          '[adzerk.boot-reload :refer [reload]]
-         '[adzerk.boot-cljs-repl :refer [cljs-repl start-repl]]
+         '[adzerk.boot-cljs-repl :refer [cljs-repl] :as boot-cljs-repl]
          '[adzerk.boot-template :as boot-template])
 
 (def dev-output-dir "dev-www")
@@ -36,14 +36,11 @@
 
 (deftask dev
   "Launch Immediate Feedback Development Environment"
-  [r no-reload bool "Disable live-reloading"]
+  [r no-rebuild bool "Disable automatic re-building"]
   (comp
    (serve :dir dev-output-dir :port 1812)
-   (if no-reload
-     (wait) ;; Needed so that the command doesn't exit if we are not
-     ;; watching.
-     (comp (watch)
-           (reload :port 1813 :ws-port 1813)))
+   (watch :manual no-rebuild)
+   (reload :port 1813 :ws-port 1813)
    ;; cljs-repl must be before cljs task
    (cljs-repl :port 1814 :ip "0.0.0.0"
               :nrepl-opts {:port 1815 :bind "0.0.0.0"})
@@ -77,3 +74,12 @@
          (with-pre-wrap fileset
            (println (str "New composition created in: " dir-name))
            fileset))))))
+
+(defn start-repl
+  []
+  ;; Manually rebuild after 5 seconds, to allow time for start-repl to
+  ;; update files. This only applies if the dev task was started with
+  ;; -r for no automatic reloading.
+  (future (Thread/sleep 5000)
+          (rebuild!))
+  (boot-cljs-repl/start-repl))
