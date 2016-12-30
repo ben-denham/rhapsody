@@ -41,6 +41,23 @@ to influence their own creations!
 6. [Visuals and interactivity](docs/6-visuals-interactivity.md)
 7. [Performance considerations](docs/7-performance.md)
 
+## Contributing
+
+Contributions to Rhapsody are very welcome, whether it's a new
+function to help with music generation, an improvement to the
+structure of the project, or an example of some cool technique to add
+to the documentation.
+
+It might make sense for some contributions to be added to the projects
+that Rhapsody uses, but they can still be added to Rhapsody itself
+until they are accepted upstream.
+
+Please
+[make a pull request](https://help.github.com/articles/creating-a-pull-request)
+for code or documentation you would like to add to the project, or
+[create an issue](https://github.com/ben-denham/rhapsody/issues/new)
+if you experience a problem or would like to request a feature.
+
 ## Other projects
 
 If you're interested in programmatic music generation, then you should
