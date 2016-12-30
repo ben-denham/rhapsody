@@ -1,33 +1,53 @@
 # Rhapsody
 
-FIXME: Write a one-line description of your library/project.
+> noun. A free instrumental composition in one extended movement,
+> typically one that is emotional in character -
+> *[OED](https://en.oxforddictionaries.com/definition/rhapsody)*
 
 ## Overview
 
-FIXME: Write a paragraph about the library/project and highlight its goals.
+Rhapsody is a platform for programmatic, web-based musical
+creations. You write [ClojureScript](https://clojurescript.org/) code
+that utilises the
+[WebAudio API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API)
+to generate music through the browser.
 
-## Setup
+Here are some examples of what you can achieve with Rhapsody:
+[https://ben-denham.github.io/rhapsody/](https://ben-denham.github.io/rhapsody/)
 
-To get an interactive development environment run:
+Since each composition is contained within a webpage, you can add any
+kind of visualisation or interactivity to the page that you like!
 
-    lein figwheel
+You can publish your compositions through
+[GitHub Pages](https://pages.github.com/) (or on any other website)
+for others to listen to. If your code uses random or dynamic sources
+to generate music, then it may never even be played the same way
+twice!
 
-and open your browser at [localhost:3449](http://localhost:3449/).
-This will auto compile and send all changes to the browser without the
-need to reload. After the compilation process is complete, you will
-get a Browser Connected REPL. An easy way to try it is:
+Alternatively, you can use Rhapsody as an environment for
+[live-coding](https://en.wikipedia.org/wiki/Live_coding).
 
-    (js/alert "Am I connected?")
+By sharing the source-code of your compositions on GitHub, other
+musicians will be able to learn from how your music works, and use it
+to influence their own creations!
 
-and you should see an alert in the browser window.
+## Documentation
 
-To clean all compiled files:
+1. [Environment setup](docs/1-setup.md)
+2. [Your first composition](docs/2-tutorial.md)
+3. [Publishing your compositions](docs/3-publishing.md)
+4. [Creating instruments](docs/4-instruments.md)
+5. [Composing musical phrases](docs/5-composing.md)
+6. [Visuals and interactivity](docs/6-visuals-interactivity.md)
+7. [Performance considerations](docs/7-performance.md)
 
-    lein clean
+## Other projects
 
-To create a production build run:
+If you're interested in programmatic music generation, then you should
+check out these other projects (which are either used by or in some
+way influenced Rhapsody):
 
-    lein do clean, cljsbuild once min
-
-And open your browser in `resources/public/index.html`. You will not
-get live reloading, nor a REPL.
+* [Klangmeister](https://github.com/ctford/klangmeister)
+* [Overtone](http://overtone.github.io/)
+* [Leipzig](https://github.com/ctford/leipzig)
+* [cljs-bach](https://github.com/ctford/cljs-bach)
