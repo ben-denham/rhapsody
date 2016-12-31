@@ -52,8 +52,6 @@
        (tempo (bpm 80))
        (where :pitch (comp C major))))
 
-(defonce jam (loop! #'live-fn))
-
 ;; MIDI input handling
 
 (defn midi-note-on [e]
@@ -64,4 +62,10 @@
             (gain 3))
            1)))
 
-(set-midi-listener! "noteon" #'midi-note-on)
+;; Page initialisation
+
+(defn main! []
+  (loop! #'live-fn)
+  (set-midi-listener! "noteon" #'midi-note-on))
+
+(defonce run-main (main!))

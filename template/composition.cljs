@@ -8,11 +8,9 @@
 (defn live-fn [prev]
   )
 
-(defonce jam (loop! #'live-fn))
+;; Page initialisation
 
-;; MIDI input handling
+(defn main! []
+  (loop! #'live-fn))
 
-(defn midi-note-on [e]
-  )
-
-(set-midi-listener! "noteon" #'midi-note-on)
+(defonce run-main (main!))
