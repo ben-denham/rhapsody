@@ -103,6 +103,6 @@ in your web browser.
 Click on `demo` link, and enjoy the first composition running on your
 machine :)
 
-## Up Next
+## Up next
 
 [Your first composition](2-tutorial.md)
