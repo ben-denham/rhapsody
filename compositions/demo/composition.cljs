@@ -39,7 +39,7 @@
        (all :instrument bell)))
 
 (defn bass [prev]
-  (->> (phrase [1]
+  (->> (phrase [2]
                [0])
        (all :instrument bass-inst)))
 
