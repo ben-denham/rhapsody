@@ -28,7 +28,9 @@
          '[pandeiro.boot-http :refer [serve]]
          '[adzerk.boot-reload :refer [reload]]
          '[adzerk.boot-cljs-repl :refer [cljs-repl] :as boot-cljs-repl]
-         '[adzerk.boot-template :as boot-template])
+         '[adzerk.boot-template :as boot-template]
+         '[clojure.string :as string]
+         '[clojure.java.io :as io])
 
 (def dev-output-dir "dev-www")
 (def release-output-dir "release-www")
@@ -54,6 +56,11 @@
    (cljs)
    (target :dir #{release-output-dir})))
 
+(defn- namespace->comp-dir [namespace]
+  (-> namespace
+      (string/replace "-" "_")
+      (#(str "compositions/" %))))
+
 (deftask new-composition
   "Create a new composition from the template."
   [n name VAL sym "Namespace for the new composition"]
@@ -64,16 +71,18 @@
       (set-env!
        :source-paths #{}
        :resource-paths #{template-dir})
-      (let [name-str (str name)
-            dir-name (str "compositions/" name-str)]
-        (comp
-         (boot-template/template :paths #{"composition.cljs"
-                                          "composition.cljs.edn"}
-                                 :subs {"name" name-str})
-         (target :dir #{dir-name})
-         (with-pre-wrap fileset
-           (println (str "New composition created in: " dir-name))
-           fileset))))))
+      (let [name-str (string/lower-case (str name))
+            dir-name (namespace->comp-dir name-str)]
+        (if (.exists (io/as-file dir-name))
+          (boot.util/fail (str "The '" dir-name "' directory already exists.\n"))
+          (comp
+           (boot-template/template :paths #{"composition.cljs"
+                                            "composition.cljs.edn"}
+                                   :subs {"name" name-str})
+           (target :dir #{dir-name})
+           (with-pre-wrap fileset
+             (println (str "New composition created in: " dir-name))
+             fileset)))))))
 
 (defn start-repl
   []

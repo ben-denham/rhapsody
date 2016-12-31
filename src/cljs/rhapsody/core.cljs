@@ -12,7 +12,7 @@
 
 (defn namespace->link [namespace]
   (let [title (first (namespace->parts namespace))
-        href (str title "/play.html")]
+        href (str (s/replace title "-" "_") "/play.html")]
     [:a {:href href} title]))
 
 (defn composition-namespace? [namespace]
