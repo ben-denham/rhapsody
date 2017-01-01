@@ -77,7 +77,8 @@
           (boot.util/fail (str "The '" dir-name "' directory already exists.\n"))
           (comp
            (boot-template/template :paths #{"composition.cljs"
-                                            "composition.cljs.edn"}
+                                            "composition.cljs.edn"
+                                            "play.html"}
                                    :subs {"name" name-str})
            (target :dir #{dir-name})
            (with-pre-wrap fileset
