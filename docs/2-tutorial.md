@@ -75,7 +75,42 @@ triggered by a file being saved.
 
 ## Step 3. Playing a series of notes
 
+In order to play a sequence of notes, you'll first need to define an
+"instrument" function that accepts notes as input:
 
+``` clojure
+(defn ping [note]
+  (sine (:pitch note)))
+```
+
+Each note will be a map (Clojure' equivalent of a dictionary/hash-map)
+with a `:pitch` value (among others). This `ping` instrument will
+simply play a sine wave at the pitch of the given note.
+
+Next, you'll need to define a phrase of notes to play:
+
+``` clojure
+(def twinkle
+  (->> (phrase [1 1 1 1 1 1 2] ;; Note durations
+               [0 0 4 4 5 5 4]) ;; Note intervals
+       (all :instrument ping) ;; Specify the instrument to play the notes with.
+       (tempo (bpm 80)) ;; Specify the tempo
+       (where :pitch (comp C major)))) ;; Specify how to convert the intervals
+                                       ;; to pitches.
+```
+
+The `twinkle` phrase is the first few notes from "Twinkle Twinkle
+Little Star". The different aspects of the definition are explained
+above. Note how the `:pitch` of each note will be determined by
+mapping each interval to a different note in the (middle) C major
+scale. For example, `0` will be the root note: "c", and `4` will be
+the fifth interval "g".
+
+To play this series of notes, we can use the `play-notes!` function:
+
+``` clojure
+(play-notes! twinkle)
+```
 
 ## Step 4. Looping over a series of notes
 
