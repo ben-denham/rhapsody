@@ -40,30 +40,25 @@ compositions of your own.
 
 One of the goals of Rhapsody is to be a platform for programmers to
 learn more about music, and for musicians to learn more about
-programming. Ideally in future, more tutorials will exist for
-explaining musical and programmatic concepts in Rhapsody
-(contributions very welcome in this area).
+programming. Ideally, more tutorials will be created for explaining
+musical and programmatic concepts through Rhapsody (contributions in
+this area are very welcome).
 
-Working with Rhapsody involves computer programming. While it may be
-possible to learn programming with Rhapsody, the tutorials have not
-been designed with a non-programmer in mind. If you're unfamiliar with
-programming in ClojureScript (particularly if you have never
-programmed with Lisp before), I would also recommend following one of
-the ClojureScript tutorials in the [additional resources](docs/8-resources.md).
-
-In order to create compositions that are pleasing to listen to, a
-moderate understanding of music theory will be helpful. You should at
-least understand the concepts of notes, durations, scales, and
-intervals. The greater your understanding of music theory, the more
-complex pieces you will be able to develop. If you do not have much
-background with music theory, I would recommend looking at some of the
+Working with Rhapsody involves programming with ClojureScript. If you
+haven't used Clojure or ClojureScript before, I would also recommend
+following one of the tutorials in the
 [additional resources](docs/8-resources.md).
 
-While you will write synthesizers to generate sounds for your
-compositions, you do not need any background in sound synthesis to be
-able to create simple synthesizer instruments with Rhapsody. If you
-would like to develop more complex synthesizers, I would recommend
-looking at some of the [additional resources](docs/8-resources.md).
+A moderate understanding of music theory will help with composing. You
+should at least understand the concepts of notes, durations, scales,
+and intervals. If you do not have much background with music theory, I
+would recommend looking at some of the
+[additional resources](docs/8-resources.md).
+
+You will be able to create simple synthesizers without any background
+in sound synthesis. If you would like to develop more complex
+synthesizers, I would recommend looking at some of the
+[additional resources](docs/8-resources.md).
 
 ## Documentation
 
