@@ -31,6 +31,40 @@ By sharing the source-code of your compositions on GitHub, other
 musicians will be able to learn from how your music works, and use it
 to influence their own creations!
 
+## What do I need to know to use Rhapsody?
+
+You should be able to follow most of the tutorials with minimal
+understanding of programming and music, but you will probably need
+some prior knowledge before you'll be able to build up full
+compositions of your own.
+
+One of the goals of Rhapsody is to be a platform for programmers to
+learn more about music, and for musicians to learn more about
+programming. Ideally in future, more tutorials will exist for
+explaining musical and programmatic concepts in Rhapsody
+(contributions very welcome in this area).
+
+Working with Rhapsody involves computer programming. While it may be
+possible to learn programming with Rhapsody, the tutorials have not
+been designed with a non-programmer in mind. If you're unfamiliar with
+programming in ClojureScript (particularly if you have never
+programmed with Lisp before), I would also recommend following one of
+the ClojureScript tutorials in the [additional resources](docs/8-resources.md).
+
+In order to create compositions that are pleasing to listen to, a
+moderate understanding of music theory will be helpful. You should at
+least understand the concepts of notes, durations, scales, and
+intervals. The greater your understanding of music theory, the more
+complex pieces you will be able to develop. If you do not have much
+background with music theory, I would recommend looking at some of the
+[additional resources](docs/8-resources.md).
+
+While you will write synthesizers to generate sounds for your
+compositions, you do not need any background in sound synthesis to be
+able to create simple synthesizer instruments with Rhapsody. If you
+would like to develop more complex synthesizers, I would recommend
+looking at some of the [additional resources](docs/8-resources.md).
+
 ## Documentation
 
 1. [Environment setup](docs/1-setup.md)
@@ -40,6 +74,7 @@ to influence their own creations!
 5. [Composing musical phrases](docs/5-composing.md)
 6. [Visuals and interactivity](docs/6-visuals-interactivity.md)
 7. [Performance considerations](docs/7-performance.md)
+8. [Additional resources](docs/8-resources.md)
 
 ## Contributing
 
@@ -47,6 +82,11 @@ Contributions to Rhapsody are very welcome, whether it's a new
 function to help with music generation, an improvement to the
 structure of the project, or an example of some cool technique to add
 to the documentation.
+
+Contributions to documentation in the form of tutorials or guides on
+programmatic or musical concepts are very welcome. Ideally, Rhapsody
+can become a platform for programmers to learn more about music, and
+for musicians to learn more about programming.
 
 It might make sense for some contributions to be added to the projects
 that Rhapsody uses, but they can still be added to Rhapsody itself
