@@ -76,7 +76,8 @@ triggered by a file being saved.
 ## Step 3. Playing a series of notes
 
 In order to play a sequence of notes, you'll first need to define an
-"instrument" function that accepts notes as input:
+"instrument" function that accepts notes as input. Add this code below
+the ``;; Composition`` comment:
 
 ``` clojure
 (defn ping [note]
@@ -87,7 +88,8 @@ Each note will be a map (Clojure' equivalent of a dictionary/hash-map)
 with a `:pitch` value (among others). This `ping` instrument will
 simply play a sine wave at the pitch of the given note.
 
-Next, you'll need to define a phrase of notes to play:
+Next, you'll need to define a phrase of notes to play. Add this code
+below the `ping` instrument definition:
 
 ``` clojure
 (def twinkle
@@ -113,6 +115,30 @@ To play this series of notes, we can use the `play-notes!` function:
 ```
 
 ## Step 4. Looping over a series of notes
+
+Often, you'll want to continue to continually loop over a series of
+notes, so that you can keep the music running while you make changes
+to develop the piece (this is one of the core ideas behind
+live-coding).
+
+To loop twinkle forever, simply make the `live-fn` return the notes
+specified in `twinkle`:
+
+``` clojure
+(defn live-fn [prev]
+  twinkle)
+```
+
+The call in `main!` to `loop!` will make set up `live-fn` to be
+continually called to return the next series of notes to play. This
+means you can keep tweaking your instruments and the phrase that is
+returned by `live-fn`, and you'll hear your music change whenever you.
+
+You'll notice when you save the composition file that it takes a short
+time before your changes take effect. This is because Rhapsody
+pre-schedules notes ahead of when they are played. This is to ensure
+there is enough time to process the phrase definitions before the
+sounds are scheduled to play.
 
 ## Up next
 
