@@ -31,7 +31,7 @@ By sharing the source-code of your compositions on GitHub, other
 musicians will be able to learn from how your music works, and use it
 to influence their own creations!
 
-## What do I need to know to use Rhapsody?
+## What do you need to know to use Rhapsody?
 
 You should be able to follow most of the tutorials with minimal
 understanding of programming and music, but you will probably need
