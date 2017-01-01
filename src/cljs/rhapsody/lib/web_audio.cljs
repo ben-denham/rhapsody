@@ -22,8 +22,10 @@
 
 (defn play-notes!
   ([notes]
-   (play! notes (+ default-delay-secs (now))))
-  ([notes at]
+   (play-notes! notes nil))
+  ([notes default-instrument]
+   (play-notes! notes default-instrument (+ default-delay-secs (now))))
+  ([notes default-instrument at]
    (when *debug*
      (do
        (js/console.log "--- play! ---")
@@ -32,11 +34,14 @@
        (js/console.log "Time until scheduled start: " (- at (now)))
        (js/console.log "Notes duration: " (melody/duration notes))))
    (doseq [{:keys [time duration instrument] :as note} notes]
-     (-> note
-         (update :pitch temperament/equal)
-         (dissoc :time)
-         instrument
-         (play! duration (+ time at))))
+     (if-let [inst (or instrument default-instrument)]
+       (-> note
+           (update :pitch temperament/equal)
+           (dissoc :time)
+           inst
+           (play! duration (+ time at))))
+     (when *debug*
+       (js/console.log "Skipping note with no instrument")))
    (when *debug*
      (js/console.log "Scheduling finished: " (now)))))
 
@@ -51,7 +56,7 @@
          next-loop (+ at (/ notes-dur 2))
          loop-delay (- next-loop (now))
          loop-delay-ms (* 1000 loop-delay)]
-     (play-notes! notes at)
+     (play-notes! notes nil at)
      (js/setTimeout #(loop! live-fn notes next-at) loop-delay-ms))))
 
 (defn pause! []

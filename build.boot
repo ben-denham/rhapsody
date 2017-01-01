@@ -1,5 +1,5 @@
 (set-env!
- :source-paths #{"src" "compositions"}
+ :source-paths #{"src/cljs" "compositions"}
  :resource-paths #{"src/html" "compositions"}
 
  :dependencies '[[org.clojure/clojure "1.8.0"]
