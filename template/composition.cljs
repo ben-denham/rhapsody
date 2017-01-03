@@ -10,7 +10,5 @@
 
 ;; Page initialisation
 
-(defn main! []
+(defn ^:export run []
   (loop! #'live-fn))
-
-(defonce run-main (main!))

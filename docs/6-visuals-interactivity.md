@@ -56,9 +56,9 @@ To do so, use the `set-midi-listener!` function provided by Rhapsody:
     ;; one second.
     (play! (ping note) duration-secs)))
 
-;; Set the midi listener in the main! function so that it is only
+;; Set the midi listener in the run function so that it is only
 ;; called once.
-(defn main! []
+(defn ^:export run []
   (set-midi-listener! "noteon" #'midi-note-on))
 ```
 

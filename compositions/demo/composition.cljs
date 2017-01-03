@@ -64,8 +64,6 @@
 
 ;; Page initialisation
 
-(defn main! []
+(defn ^:export run []
   (loop! #'live-fn)
   (set-midi-listener! "noteon" #'midi-note-on))
-
-(defonce run-main (main!))

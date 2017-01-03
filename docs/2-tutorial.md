@@ -58,20 +58,18 @@ file. This is the "live-reloading" feature of the `boot dev` task at
 work.
 
 If you want some code to be execute only once (when the page initially
-loads), you can add it to the `main!` function:
+loads), you can add it to the `run` function:
 
 ``` clojure
-(defn main! []
+(defn ^:export run []
   (play! (sine 880) 1) ;; Add this line
   (loop! #'live-fn))
 ```
 
 Now you'll need to refresh the page to hear the sound played again.
 
-**Note:** `main!` is only executed when the page is reloaded by the
-special `defonce` line at the end of the composition, all code outside
-of a `defonce` is re-executed whenever the the automatic-reload is
-triggered by a file being saved.
+**Note:** `run` is only executed when the page is reloaded by the
+second script tag in `play.html`.
 
 ## Step 3. Playing a series of notes
 
@@ -129,7 +127,7 @@ specified in `twinkle`:
   twinkle)
 ```
 
-The call in `main!` to `loop!` will make set up `live-fn` to be
+The call in `run` to `loop!` will make set up `live-fn` to be
 continually called to return the next series of notes to play. This
 means you can keep tweaking your instruments and the phrase that is
 returned by `live-fn`, and you'll hear your music change whenever you.
