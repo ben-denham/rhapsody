@@ -113,6 +113,30 @@ create a sound from multiple sound sources:
     (sine (* pitch 2))
 ```
 
+## Controlling parameters with LFOs
+
+[LFOs](https://en.wikipedia.org/wiki/Low-frequency_oscillation) (or
+low-frequency oscillators) are often used in musical synthesis to
+control parameters of other nodes.
+
+For example, we can fluctuate the gain amount of a `gain` node over
+time according to a sine wave oscillating at 5 Hertz:
+
+``` clojure
+(gain (sine 5))
+```
+
+Another useful source node to use in this context is the `constant`
+node, so that you can add a constant value to the fluctuation of
+an oscillator:
+
+``` clojure
+(add (constant 10) (sine 5))
+```
+
+(Remember, you can already control the range of oscillation by
+muliplying a signal with a `gain` node).
+
 ## Learning more
 
 To learn more about the synthesizer nodes available to you, refer to
