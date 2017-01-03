@@ -11,4 +11,4 @@ goog.addDependency("../clojure/set.js", ['clojure.set'], ['cljs.core']);
 goog.addDependency("../leipzig/chord.js", ['leipzig.chord'], ['leipzig.scale', 'cljs.core', 'clojure.set']);
 goog.addDependency("../rhapsody/live.js", ['rhapsody.live'], ['leipzig.temperament', 'rhapsody.lib.web_audio', 'cljs_bach.synthesis', 'leipzig.scale', 'rhapsody.lib.midi', 'cljs.core', 'leipzig.melody', 'leipzig.chord']);
 goog.addDependency("../demo/composition.js", ['demo.composition'], ['rhapsody.live', 'cljs.core']);
-goog.addDependency("../boot/cljs/main691.js", ['boot.cljs.main691'], ['cljs.core', 'demo.composition']);
+goog.addDependency("../boot/cljs/main843.js", ['boot.cljs.main843'], ['cljs.core', 'demo.composition']);

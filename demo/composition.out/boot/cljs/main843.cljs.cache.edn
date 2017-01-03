@@ -1,0 +1,1 @@
+{:rename-macros {}, :renames {}, :use-macros {}, :excludes #{}, :name boot.cljs.main843, :imports nil, :requires {demo.composition demo.composition}, :uses nil, :require-macros nil, :doc nil}

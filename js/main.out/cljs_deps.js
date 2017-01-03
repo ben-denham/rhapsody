@@ -11,4 +11,4 @@ goog.addDependency("../cemerick/url.js", ['cemerick.url'], ['pathetic.core', 'go
 goog.addDependency("../dommy/utils.js", ['dommy.utils'], ['cljs.core']);
 goog.addDependency("../dommy/core.js", ['dommy.core'], ['cljs.core', 'dommy.utils', 'clojure.string']);
 goog.addDependency("../rhapsody/core.js", ['rhapsody.core'], ['crate.core', 'cljs.core', 'cemerick.url', 'dommy.core', 'clojure.string']);
-goog.addDependency("../boot/cljs/main696.js", ['boot.cljs.main696'], ['rhapsody.core', 'cljs.core']);
+goog.addDependency("../boot/cljs/main848.js", ['boot.cljs.main848'], ['rhapsody.core', 'cljs.core']);
