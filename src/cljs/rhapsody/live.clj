@@ -48,6 +48,10 @@
      {:ns rhapsody.lib.web-audio
       :vars [audio-context pause!
              play! play-notes!
-             now loop! resume!]}
+             now loop! resume!
+             make-input! set-input!
+             lin-ramp-input!
+             exp-ramp-input!
+             jack]}
      {:ns rhapsody.lib.midi
       :vars [set-midi-listener!]}]))
