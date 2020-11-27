@@ -1,8 +1,8 @@
-// Compiled by ClojureScript 1.9.293 {}
+// Compiled by ClojureScript 1.10.773 {}
 goog.provide('leipzig.temperament');
 goog.require('cljs.core');
-leipzig.temperament.pow = (function leipzig$temperament$pow(p1__8173_SHARP_,p2__8174_SHARP_){
-return Math.pow(p1__8173_SHARP_,p2__8174_SHARP_);
+leipzig.temperament.pow = (function leipzig$temperament$pow(p1__1213_SHARP_,p2__1214_SHARP_){
+return Math.pow(p1__1213_SHARP_,p2__1214_SHARP_);
 });
 /**
  * The difference between an octave constructed out of pure fifths, and one constructed
@@ -28,20 +28,16 @@ return cljs.core.nth.call(null,ratios,midi);
 });
 leipzig.temperament.tune = (function leipzig$temperament$tune(root,incremental_ratios){
 var geometric_progression = cljs.core.partial.call(null,cljs.core.reductions,cljs.core._STAR_,(1));
-var ratios = cljs.core.sort.call(null,cljs.core.map.call(null,((function (geometric_progression){
-return (function leipzig$temperament$tune_$_normalise(ratio){
+var ratios = cljs.core.sort.call(null,cljs.core.map.call(null,(function leipzig$temperament$tune_$_normalise(ratio){
 if((ratio < (2))){
 return ratio;
 } else {
 return leipzig$temperament$tune_$_normalise.call(null,(ratio / (2)));
 }
-});})(geometric_progression))
-,geometric_progression.call(null,incremental_ratios)));
-var tuning = ((function (geometric_progression,ratios){
-return (function (midi){
+}),geometric_progression.call(null,incremental_ratios)));
+var tuning = (function (midi){
 return leipzig.temperament.temper.call(null,(midi - root),ratios);
-});})(geometric_progression,ratios))
-;
+});
 return leipzig.temperament.align_concert_a.call(null,tuning);
 });
 /**

@@ -39,7 +39,7 @@
        (all :instrument bell)))
 
 (defn bass [prev]
-  (->> (phrase [1]
+  (->> (phrase [2]
                [0])
        (all :instrument bass-inst)))
 
@@ -52,8 +52,6 @@
        (tempo (bpm 80))
        (where :pitch (comp C major))))
 
-(defonce jam (loop! #'live-fn))
-
 ;; MIDI input handling
 
 (defn midi-note-on [e]
@@ -64,4 +62,8 @@
             (gain 3))
            1)))
 
-(set-midi-listener! "noteon" #'midi-note-on)
+;; Page initialisation
+
+(defn ^:export run []
+  (loop! #'live-fn)
+  (set-midi-listener! "noteon" #'midi-note-on))

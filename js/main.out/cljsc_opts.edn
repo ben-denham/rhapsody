@@ -1,0 +1,1 @@
+{:asset-path "js/main.out", :output-dir "/home/ben/.boot/cache/tmp/home/ben/src/rhapsody/h2j/u9tx9g/js/main.out", :output-to "/home/ben/.boot/cache/tmp/home/ben/src/rhapsody/h2j/u9tx9g/js/main.js", :main boot.cljs.main3812, :warning-handlers [#object[adzerk.boot_cljs.impl$compile_cljs$handler__869 0x16188479 "adzerk.boot_cljs.impl$compile_cljs$handler__869@16188479"]]}
