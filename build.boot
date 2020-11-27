@@ -1,20 +1,27 @@
 (set-env!
- :source-paths #{"src/cljs" "compositions"}
+ :source-paths #{"src/cljs" "compositions"
+                 ;; Use a patched version of weasel to resolve Google
+                 ;; closure tools incompatibility after other updates:
+                 ;; https://github.com/nrepl/weasel/pull/75
+                 "patched-libs/weasel/src/cljs"
+                 "patched-libs/weasel/src/clj"}
  :resource-paths #{"src/html" "compositions"}
 
  :dependencies '[[org.clojure/clojure "1.8.0"]
-                 [org.clojure/clojurescript "1.9.293"]
+                 [org.clojure/clojurescript "1.10.773"]
 
                  ; Boot deps
-                 [adzerk/boot-cljs "1.7.228-2"]
-                 [pandeiro/boot-http "0.7.0"]
-                 [adzerk/boot-reload "0.4.13"]
-                 [adzerk/boot-cljs-repl "0.3.3"]
-                 [com.cemerick/piggieback "0.2.1"]     ;; needed by bREPL
-                 [weasel "0.7.0"]                      ;; needed by bREPL
-                 [org.clojure/tools.nrepl "0.2.12"]    ;; needed by bREPL
+                 [adzerk/boot-cljs "2.1.5"]
+                 [pandeiro/boot-http "0.8.3"]
+                 [adzerk/boot-reload "0.6.0"]
+                 [adzerk/boot-cljs-repl "0.4.0"]
+                 [cider/piggieback "0.5.2"]            ;; needed by REPL
+                 [http-kit "2.3.0"]
+                 ;;[weasel "0.7.1"]                      ;; needed by REPL
+                 [org.clojure/tools.nrepl "0.2.13"]    ;; needed by REPL
                  [clj-jgit "0.8.9"]
                  [adzerk/boot-template "1.0.0"]
+                 [nrepl "0.7.0"]
 
                  ; App deps
                  [org.clojure/tools.namespace "0.3.0-alpha3"]

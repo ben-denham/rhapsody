@@ -1,4 +1,4 @@
-FROM clojure:lein-2.7.1
+FROM clojure:lein-2.9.3
 
 # Install Boot
 RUN wget -O /usr/bin/boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh \

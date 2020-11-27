@@ -51,6 +51,20 @@ dev`:
 3. Select the localhost Rhapsody REPL port
 4. A new buffer should open with a REPL prompt
 
+If you see warnings in the Cider REPL about `nrepl` or `cider-repl`
+versions, you may need to add the following in a
+`~/.boot/profile.boot` file:
+
+``` clojure
+(require 'boot.repl)
+
+(swap! boot.repl/*default-dependencies*
+       concat '[[cider/cider-nrepl "REPLACE_WITH_YOUR_CIDER_VERSION"]])
+
+(swap! boot.repl/*default-middleware*
+       conj 'cider.nrepl/cider-middleware)
+```
+
 ### Step 4. Initialise a ClojureScript browser REPL
 
 At the REPL you've opened in your editor, run the following Clojure
