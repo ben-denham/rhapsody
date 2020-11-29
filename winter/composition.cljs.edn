@@ -1,2 +1,0 @@
-{:require [winter.composition]
- :compiler-options {:asset-path "composition.out"}}

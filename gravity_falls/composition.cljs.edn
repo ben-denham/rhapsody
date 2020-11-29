@@ -1,2 +1,0 @@
-{:require [gravity-falls.composition]
- :compiler-options {:asset-path "composition.out"}}
