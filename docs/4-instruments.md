@@ -38,6 +38,28 @@ sound waves at a given frequency (or pitch):
 (triangle pitch)
 ```
 
+### MIDI Soundfont Instruments
+
+You can also use MIDI soundfonts as sound sources:
+
+```
+(def piano-midi-inst (load-midi-inst :name "electric_piano_2"))
+;; Or load by soundfont URL
+;; (def piano-midi-inst (load-midi-inst :url "https://gleitz.github.io/midi-js-soundfonts/MusyngKite/electric_piano_2-mp3.js"))
+
+(defn piano-inst [note]
+  (connect->
+   (midi-note piano-midi-inst (:midi note))
+   (gain 5)
+   (adsr 0.01 0.05 1 1)))
+
+;; Wait for soundfont to load before use:
+(await-midi-insts
+   [piano-midi-inst]
+   (fn []
+     (play! (piano-inst {:midi 48}) 1)))
+```
+
 ## Envelopes
 
 An envelope node is used to control the volume of a sound over time.

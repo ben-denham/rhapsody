@@ -49,9 +49,7 @@ To do so, use the `set-midi-listener!` function provided by Rhapsody:
 ``` clojure
 ;; Define a function to handle MIDI "note-on" events.
 (defn midi-note-on [event]
-  (let [midi-number (-> event :note :number)
-        freq (temp-equal midi-number)
-        note {:pitch freq}]
+  (let [note (midi-event-note event temp-equal)]
     ;; Play a ping sound at the pitch determined by the midi note for
     ;; one second.
     (play! (ping note) duration-secs)))
