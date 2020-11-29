@@ -3,8 +3,7 @@
             [leipzig.melody :as melody]
             [cljs-bach.synthesis :as synth]
             [web-audio.constant-source-node]
-            [audio-loader.audio-loader]
-            [sample-player.sample-player]))
+            [audio-loader.audio-loader]))
 
 ;; Enable the ConstantSourceNode polyfill.
 (.polyfill js/ConstantSourceNode)
