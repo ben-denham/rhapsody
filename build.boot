@@ -17,15 +17,16 @@
                  [adzerk/boot-cljs-repl "0.4.0"]
                  [cider/piggieback "0.5.2"]            ;; needed by REPL
                  [http-kit "2.3.0"]
-                 ;;[weasel "0.7.1"]                      ;; needed by REPL
+                 [weasel "0.7.1"]                      ;; needed by REPL
                  [org.clojure/tools.nrepl "0.2.13"]    ;; needed by REPL
                  [clj-jgit "0.8.9"]
                  [adzerk/boot-template "1.0.0"]
                  [nrepl "0.7.0"]
+                 [com.fzakaria/slf4j-timbre "0.3.20"]
 
                  ; App deps
                  [org.clojure/tools.namespace "0.3.0-alpha3"]
-                 [cljs-bach "0.2.0"]
+                 [cljs-bach "0.3.0"]
                  [leipzig "0.10.0"]
                  [com.cemerick/url "0.1.1"]
                  [crate "0.2.4"]
