@@ -2,7 +2,9 @@
   (:require [leipzig.temperament :as temperament]
             [leipzig.melody :as melody]
             [cljs-bach.synthesis :as synth]
-            [web-audio.constant-source-node]))
+            [web-audio.constant-source-node]
+            [audio-loader.audio-loader]
+            [sample-player.sample-player]))
 
 ;; Enable the ConstantSourceNode polyfill.
 (.polyfill js/ConstantSourceNode)
@@ -40,6 +42,7 @@
    (doseq [{:keys [time duration instrument] :as note} notes]
      (if-let [inst (or instrument default-instrument)]
        (-> note
+           (assoc :midi (:pitch note))
            (update :pitch temperament/equal)
            (dissoc :time)
            inst
@@ -68,6 +71,9 @@
 
 (defn resume! []
   (.resume audio-context))
+
+
+;; Mutable source nodes.
 
 (defn set-input! [input val]
   "Set the value of an input (with immediate effect)."
@@ -106,3 +112,78 @@
   "Wrap an input so that it can be used as a source node."
   (fn [context at duration]
     (synth/subgraph input)))
+
+
+;; MIDI instruments
+
+(defn note-to-midi-key
+  ""
+  [note]
+  (let [keys ["C" "Db" "D" "Eb" "E" "F" "Gb" "G" "Ab" "A" "Bb" "B"]
+        key (nth keys (mod note 12))
+        octave (- (js/Math.floor (/ note 12)) 1)]
+    (str key octave)))
+
+(defn load-midi-inst
+  "Load audio buffers for a MIDI instrument.
+
+  If :name is provided, load the instrument with the given name from a
+  MIDI.js soundfount:
+  https://github.com/gleitz/midi-js-soundfonts. Instruments listed on
+  that page, along with valid overridesfor :soundfont and :format.
+
+  If :url is provided, it is assumed to be to an instrument in a
+  MIDI.js soundfont formatted JS file."
+  [& {:keys [url name soundfont format]
+      :or {format "mp3"}}]
+  (let [soundfont
+        (if (nil? soundfont)
+          ;; Only FluidR3_GM has percussion, but MusyngKite
+          ;; is higher quality.
+          (if (= name "percussion")
+            "FluidR3_GM"
+            "MusyngKite")
+          soundfont)
+        soundfont-url
+        (cond (some? url) url
+              (some? name) (str "https://gleitz.github.io/midi-js-soundfonts/"
+                                soundfont "/" name "-" format ".js")
+              :else (throw (js/Error. "No instrument :url or :name provided.")))
+        midi-inst #js {"buffers" (js-obj)
+                       "buffersLoaded" 0
+                       "loadedPromise" nil}]
+    ;; Set a loadedPromise that will resolve when the audio buffers
+    ;; have been loaded.
+    (set! (.-loadedPromise midi-inst)
+          (new js/Promise
+               (fn [resolve reject]
+                 (.then (js/loadAudio soundfont-url)
+                        (fn [buffers]
+                          (set! (.. midi-inst -buffers) buffers)
+                          (resolve midi-inst))))))
+    midi-inst))
+
+(defn await-midi-insts
+  "Execute callback when all midi-insts have fully loaded."
+  [midi-insts callback]
+  (.then (->> midi-insts
+              (map #(aget % "loadedPromise"))
+              clj->js
+              js/Promise.all)
+         callback))
+
+(defn midi-note
+  "Play a note (for the given MIDI note number) on the given midi-inst."
+  [midi-inst note-num]
+  (fn [context at duration]
+    (synth/source
+     (let [node (doto (.createBufferSource context)
+                  (.start at)
+                  ;; Allow time for release.
+                  (.stop (+ at duration 1.0)))
+           midi-key (note-to-midi-key note-num)
+           buffer (aget midi-inst "buffers" midi-key)]
+       ;; Buffer will be empty if midi-key was not found in buffers.
+       (when buffer
+         (set! (.-buffer node) buffer))
+       node))))

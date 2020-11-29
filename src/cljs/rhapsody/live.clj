@@ -13,7 +13,7 @@
 
              sawtooth sine square     ; Signal generators
              triangle white-noise
-             constant
+             constant sample
 
              adsr gain percussive     ; Signal shapers
              adshr envelope
@@ -52,6 +52,9 @@
              make-input! set-input!
              lin-ramp-input!
              exp-ramp-input!
-             jack]}
+             jack
+             load-midi-inst
+             await-midi-insts
+             midi-note]}
      {:ns rhapsody.lib.midi
-      :vars [set-midi-listener!]}]))
+      :vars [midi-event-note set-midi-listener!]}]))

@@ -8,6 +8,10 @@
         listener (get @midi-listener type)]
     (listener event-map)))
 
+(defn midi-event-note [e temp]
+  (let [midi (-> e :note :number)]
+    {:midi midi :pitch (temp midi)}))
+
 (defn- midi-init! [type]
   (.enable
    js/WebMidi
