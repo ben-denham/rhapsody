@@ -10,5 +10,13 @@
 
 ;; Page initialisation
 
+(defn midi-note-on [e]
+  (let [note (midi-event-note e temp-equal)]
+    ))
+
 (defn ^:export run []
-  (loop! #'live-fn))
+  (await-midi-insts
+   []
+   (fn []
+     (loop! #'live-fn)
+     (set-midi-listener! "noteon" #'midi-note-on))))
