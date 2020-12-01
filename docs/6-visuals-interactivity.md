@@ -68,7 +68,6 @@ value and the code is recompiled). To store and update a value over
 time, you must use an atom:
 
 ``` clojure
-
 ;; An atom can store any value, in this case, a number.
 (def my-atom (atom 1))
 
@@ -84,6 +83,30 @@ time, you must use an atom:
 
 ;; Print the new value
 (println @my-atom) ;; => 5
+```
+
+You can also use `input` nodes to dynamically control instruments,
+which is especially useful when driven by MIDI `"controlchange"`
+events:
+
+``` clojure
+(defonce gain-input (make-input! audio-context 10.0))
+
+(defn lead-inst [note]
+  (connect->
+   (sine (:pitch note))
+   ;; Note the use of `jack` to allow the input node
+   ;; to be used as a source node.
+   (gain (jack gain-input))))
+
+(defn midi-control-change [e]
+  ;; The value of a controlchange event will vary from 0-127.
+  ;; Other than immediately setting an input, you can also
+  ;; change it gradually with lin-ramp-input! or exp-ramp-input!
+  (set-input! gain-input (/ (:value e) 10.0)))
+
+(defn ^:export run []
+  (set-midi-listener! "controlchange" #'midi-control-change))
 ```
 
 ## Up next

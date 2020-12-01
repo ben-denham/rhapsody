@@ -3,6 +3,8 @@
 
 (defonce live (import-live!))
 
+(defonce gain-input (make-input! audio-context 3))
+
 ;; Instruments
 
 (defn lead-inst [note]
@@ -20,7 +22,7 @@
 (defn piano-inst [note]
   (connect->
    (midi-note piano-midi-inst (:midi note))
-   (gain 5)
+   (gain (jack gain-input))
    (adsr 0.01 0.05 1 1)))
 
 ;; Composition
@@ -42,9 +44,13 @@
   (let [note (midi-event-note e temp-equal)]
     (play! (piano-inst note) 1)))
 
+(defn midi-control-change [e]
+  (set-input! gain-input (/ (:value e) 10.0)))
+
 (defn ^:export run []
   (await-midi-insts
    [piano-midi-inst]
    (fn []
      (loop! #'live-fn)
-     (set-midi-listener! "noteon" #'midi-note-on))))
+     (set-midi-listener! "noteon" #'midi-note-on)
+     (set-midi-listener! "controlchange" #'midi-control-change))))
