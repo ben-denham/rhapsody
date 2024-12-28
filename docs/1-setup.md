@@ -25,12 +25,11 @@ You will need to have completed the following tasks before
 If you are not planning to use Docker, you will need the following
 pieces of software installed on your machine:
 
-* Java >= 8 ([OpenJDK](http://openjdk.java.net/install/) or
-  [Java SE](http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html))
+* Java >= 8 ([OpenJDK](http://openjdk.java.net/install/)
   * You may already have Java installed without knowing it. Try
     running `java -version` in your terminal, and make sure it returns
     a version number >= 1.8.
-* [Boot](http://boot-clj.com/)
+* [`clj` and `clojure` command line tools](https://clojure.org/guides/install_clojure)
 
 ### Prerequisites for Docker
 

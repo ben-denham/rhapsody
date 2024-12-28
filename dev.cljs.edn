@@ -1,0 +1,2 @@
+{:main rhapsody.core
+ :paths ["src" "compositions/travellers" "target"]}

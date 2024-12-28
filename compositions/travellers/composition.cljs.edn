@@ -1,2 +1,0 @@
-{:require [travellers.composition]
- :compiler-options {:asset-path "composition.out"}}

@@ -5,3 +5,5 @@
 .repl
 .nrepl-port
 .nrepl-history
+.cpcache/
+target/
