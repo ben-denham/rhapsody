@@ -19,11 +19,8 @@
   ([sound-source duration]
    (play! sound-source duration (+ default-delay-secs (now))))
   ([sound-source duration at]
-   (let [connected-instance (synth/connect sound-source synth/destination)
-         ;; cljs-bach oscillators add an extra second to durations,
-         ;; which can be unexpected.
-         adjusted-duration (- duration 1)]
-     (connected-instance audio-context at adjusted-duration))))
+   (let [connected-instance (synth/connect sound-source synth/destination)]
+     (connected-instance audio-context at duration))))
 
 (defn play-notes!
   ([notes]

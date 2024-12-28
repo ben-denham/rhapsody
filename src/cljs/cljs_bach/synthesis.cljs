@@ -214,7 +214,7 @@
         (-> .-frequency (plug freq context at duration))
         (-> .-type (set! type))
         (.start at)
-        (.stop (+ at duration 1.0)))))) ; Give a bit extra for the release
+        (.stop (+ at (* 2 duration))))))) ; Give twice duration to allow for release
 
 (def ^:export sine (partial oscillator "sine"))
 (def ^:export sawtooth (partial oscillator "sawtooth"))
