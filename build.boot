@@ -26,7 +26,7 @@
 
                  ; App deps
                  [org.clojure/tools.namespace "0.3.0-alpha3"]
-                 [cljs-bach "0.3.0"]
+                 [cljs-ajax "0.5.5"]
                  [leipzig "0.10.0"]
                  [com.cemerick/url "0.1.1"]
                  [crate "0.2.4"]
