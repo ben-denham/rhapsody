@@ -22,13 +22,6 @@ if [ ! -d "$maven_dir" ]; then
 fi
 maven_dir_vol="-v $maven_dir:/home/code_executor/.m2"
 
-# Share host ~/.boot if it exists.
-boot_dir_vol=""
-boot_dir="$HOME/.boot"
-if [ -d "$boot_dir" ]; then
-    boot_dir_vol="-v $boot_dir:/home/code_executor/.boot"
-fi
-
 # Run docker container.
 docker run --rm -it\
        -p 1812:1812 \
@@ -37,5 +30,4 @@ docker run --rm -it\
        -p 1815:1815 \
        -v $(pwd):/app \
        $maven_dir_vol \
-       $boot_dir_vol \
        $DOCKER_IMAGE $command

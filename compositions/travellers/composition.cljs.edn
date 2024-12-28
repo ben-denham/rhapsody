@@ -1,0 +1,2 @@
+{:main travellers.composition
+ :output-to "target/public/travellers/composition.js"}

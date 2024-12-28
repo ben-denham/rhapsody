@@ -1,10 +1,9 @@
-(ns rhapsody.core
+(ns rhapsody.menu
   (:require [clojure.string :as s]
             [cemerick.url :refer [url]]
             [dommy.core :refer [replace-contents!]]
             [crate.core :refer [html]])
-  (:require-macros [rhapsody.lib.macros :refer [get-compositions-namespaces
-                                                  require-namespace-string]]
+  (:require-macros [rhapsody.lib.macros :refer [get-compositions-namespaces]]
                    [dommy.core :refer [sel1]]))
 
 (defn namespace->parts [namespace]
