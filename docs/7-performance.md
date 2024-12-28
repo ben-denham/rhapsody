@@ -46,6 +46,9 @@ an example, you will connect your editor to the REPL started by `boot
 dev`:
 
 1. Open your `composition.cljs` file in Emacs.
+   * You may need to run `M-x clojure-mode` to switch from
+     `clojurescript-mode`, see:
+     https://github.com/clojure-emacs/cider/issues/3061
 2. Run the Emacs command: `M-x cider-connect`
    * (M-x stands for the combination of the 'Alt' and 'x' keys)
 3. Select the localhost Rhapsody REPL port

@@ -13,7 +13,7 @@
                  ; Boot deps
                  [adzerk/boot-cljs "2.1.5"]
                  [pandeiro/boot-http "0.8.3"]
-                 [adzerk/boot-reload "0.6.0"]
+                 [adzerk/boot-reload "0.6.1"]
                  [adzerk/boot-cljs-repl "0.4.0"]
                  [cider/piggieback "0.5.2"]            ;; needed by REPL
                  [http-kit "2.3.0"]

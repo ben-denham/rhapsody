@@ -17,7 +17,8 @@ maven_dir="$HOME/.m2"
 if [ ! -d "$maven_dir" ]; then
     # Otherwise, create a .m2 directory to save maven dependencies
     # across docker containers.
-    maven_dir=".m2"
+    maven_dir="./.m2"
+    mkdir -p $maven_dir
 fi
 maven_dir_vol="-v $maven_dir:/home/code_executor/.m2"
 

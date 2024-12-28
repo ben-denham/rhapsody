@@ -15,7 +15,7 @@ This will create a new `my_composition` directory inside the
 
 `compositions/my_composition` will include three files:
 
-* `index.html`
+* `play.html`
   * The HTML webpage for the composition. You can edit this file to
     customise the display of the webpage as much as you like, but
     we'll leave it as it is for now.
