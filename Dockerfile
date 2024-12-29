@@ -1,4 +1,8 @@
-FROM clojure:lein-2.9.3
+FROM clojure:tools-deps-1.12.0.1479
+
+RUN apt-get update && apt-get install -y \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Boot
 RUN wget -O /usr/bin/boot https://github.com/boot-clj/boot-bin/releases/download/latest/boot.sh \

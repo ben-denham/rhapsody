@@ -30,7 +30,8 @@
                  [leipzig "0.10.0"]
                  [com.cemerick/url "0.1.1"]
                  [crate "0.2.4"]
-                 [prismatic/dommy "1.1.0"]])
+                 [prismatic/dommy "1.1.0"]
+                 [quil "4.3.1563"]])
 
 (require '[adzerk.boot-cljs :refer [cljs]]
          '[pandeiro.boot-http :refer [serve]]
